@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import Button from "react-bootstrap/Button";
 import { useTodoContext } from "../Provider/TodoProvider";
 
 const TodoForm = () => {
@@ -25,7 +24,7 @@ const TodoForm = () => {
   return (
     <div>
       <form onSubmit={handleOnSubmit}>
-        <h3>Number of todo items: {getNumberOfTodoItem()}</h3>
+        <h3>Number Of Todo Items : {getNumberOfTodoItem()}</h3>
 
         <input
           type="text"
@@ -51,7 +50,7 @@ const TodoForm = () => {
         ></input>
         <br />
         <br />
-        <Button size="sm" variant="primary" type="submit">Submit</Button>
+        <button className="btn-color" type="submit">Submit</button>
       </form>
     </div>
   );

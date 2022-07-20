@@ -32,7 +32,7 @@ const HomePage = () => {
         <Modal.Header closeButton>
           <Modal.Title>{(itemForDisplay[0] || {}).username}</Modal.Title>
         </Modal.Header>
-        <Modal.Body>
+        <Modal.Body >
           <p>{(itemForDisplay[0] || {}).name}</p>
           <p>{(itemForDisplay[0] || {}).email}</p>
           <p>{(itemForDisplay[0] || {}).phone}</p>
