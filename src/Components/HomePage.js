@@ -2,10 +2,16 @@ import React, { useEffect, useState } from "react";
 import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
 import Modal from "react-bootstrap/Modal";
+import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
+import NavBar from "./NavBar";
+import { useNavigate } from "react-router-dom";
 
 import { useTodoContext } from "../Provider/TodoProvider";
 
 const HomePage = () => {
+  const navigate = useNavigate();
   const { todoList, removeTodo, getAllData } = useTodoContext();
 
   const onDelete = (item) => {
@@ -13,60 +19,42 @@ const HomePage = () => {
     removeTodo(index);
   };
 
-  useEffect(() => {
-    getAllData();
-  }, []);
-
-  const [show, setShow] = useState(false);
-  const [itemForDisplay, setItemForDisplay] = useState([]);
-
-  const handleClose = () => setShow(false);
   const handleShow = (item) => {
-    setShow(true);
-    setItemForDisplay([item]);
+    navigate(`/ShowItem/${item.id}`);
   };
 
   return (
     <div>
-      <Modal show={show} onHide={handleClose}>
-        <Modal.Header closeButton>
-          <Modal.Title>{(itemForDisplay[0] || {}).username}</Modal.Title>
-        </Modal.Header>
-        <Modal.Body >
-          <p>{(itemForDisplay[0] || {}).name}</p>
-          <p>{(itemForDisplay[0] || {}).email}</p>
-          <p>{(itemForDisplay[0] || {}).phone}</p>
-          <p>{(itemForDisplay[0] || {}).website}</p>
-          <p>{((itemForDisplay[0] || {}).company || {}).name}</p>
-          <p>{((itemForDisplay[0] || {}).address || {}).city}</p>
-        </Modal.Body>
-        <Modal.Footer>
-          <Button variant="secondary" onClick={handleClose}>
-            Close
-          </Button>
-        </Modal.Footer>
-      </Modal>
+      <NavBar/>
+      <br/>
+      <Container>
+      <Row>
       {(todoList || []).map((todo, index) => (
-        <Card border="dark" bg="info" style={{ width: "15rem" }}>
-          <Card.Body>
-            <Card.Title>Username: {todo.username}</Card.Title>
-            <Card.Text>
-              <p>Email: {todo.email}</p>
-              <p>City: {(todo.address || {}).city}</p>
-            </Card.Text>
-            <Button
-              size="sm"
-              variant="primary"
-              onClick={() => handleShow(todo)}
-            >
-              More
-            </Button>
-            <Button size="sm" variant="danger" onClick={() => onDelete(todo)}>
-              Delete
-            </Button>
-          </Card.Body>
-        </Card>
+          <Col md={4}>
+            <Card border="dark" bg="info" style={{ width: "26rem" }}>
+              <Card.Body>
+                <Card.Title>Username: {todo.username}</Card.Title>
+                <Card.Text>
+                  <p>Email: {todo.email}</p>
+                  <p>City: {(todo.address || {}).city}</p>
+                </Card.Text>
+                <Button
+                  size="sm"
+                  variant="primary"
+                  onClick={() => handleShow(todo)}
+                >
+                  More
+                </Button>
+                <Button size="sm" variant="danger" onClick={() => onDelete(todo)}>
+                  Delete
+                </Button>
+              </Card.Body>
+            </Card>
+            <br/>
+          </Col>
       ))}
+      </Row>
+      </Container>
     </div>
   );
 };

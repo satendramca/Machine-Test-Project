@@ -1,8 +1,10 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { useTodoContext } from "../Provider/TodoProvider";
 
 const TodoForm = () => {
   const { getNumberOfTodoItem, addTodo } = useTodoContext();
+  const navigate = useNavigate();
   const [user, setUser] = useState("");
   const [email, setEmail] = useState("");
   const [city, setCity] = useState("");
@@ -14,11 +16,14 @@ const TodoForm = () => {
       return;
     }
 
-    addTodo({ username: user, email, address: { city } });
+    const id = Math.floor(Math.random() * 10000) + 11;
+    addTodo({ id, username: user, email, address: { city } });
 
     setUser("");
     setEmail("");
     setCity("");
+
+    navigate('/');
   };
 
   return (
@@ -29,6 +34,7 @@ const TodoForm = () => {
         <input
           type="text"
           value={user}
+          required
           onChange={(e) => setUser(e.target.value)}
           placeholder=" Enter Username"
         ></input>

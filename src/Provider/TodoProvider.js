@@ -2,7 +2,7 @@ import { createContext, useContext, useState } from "react";
 
 const TodoContext = createContext();
 
-const initialTodoListState = [" "];
+const initialTodoListState = [];
 
 const TodoProvider = ({ children }) => {
   const [todoList, setTodoList] = useState(initialTodoListState);
