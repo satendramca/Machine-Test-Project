@@ -11,6 +11,8 @@ import HomePage from "./Components/HomePage";
 import UserProfile from "./Components/UserProfile";
 
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import FormPage from "./Components/FormValidation";
+import FormValidation from "./Components/FormValidation";
 
 function App() {
   return (
@@ -24,7 +26,7 @@ function App() {
         </TodoProvider>
 
         <Routes>
-          <Route path="/userDetails" element={<UserProfile />} />
+          <Route path="/formvalidation" element={<FormValidation/>} />
         </Routes>
       </BrowserRouter>
 
