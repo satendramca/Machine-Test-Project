@@ -1,34 +1,66 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
+import Modal from 'react-bootstrap/Modal';
 import { useTodoContext } from "../Provider/TodoProvider";
 
 const HomePage = () => {
 
-  const { todoList, removeTodo,  } = useTodoContext();
+  const { todoList, removeTodo, getAllData } = useTodoContext();
 
-  const onDelete = (e) => {
-    console.log("I am ondelete of todo", todo);
-
+  const onDelete = (item) => {
+    const index = todoList.indexOf(item);
+    removeTodo(index);
   }
+
+  useEffect(() => {
+    getAllData();
+  },[]);
+
+  const [show, setShow] = useState(false);
+  const [itemForDisplay, setItemForDisplay] = useState([]);
+
+  const handleClose = () => setShow(false);
+  const handleShow = (item) => {
+    setShow(true);
+    setItemForDisplay([item]);
+  };
+
   return (
 
     <div>
+      <Modal show={show} onHide={handleClose}>
+        <Modal.Header closeButton>
+          <Modal.Title>{(itemForDisplay[0] || {}).username}</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <p>{(itemForDisplay[0] || {}).name}</p>
+          <p>{(itemForDisplay[0] || {}).email}</p>
+          <p>{(itemForDisplay[0] || {}).phone}</p>
+          <p>{(itemForDisplay[0] || {}).website}</p>
+          <p>{((itemForDisplay[0] || {}).company || {}).name}</p>
+          <p>{((itemForDisplay[0] || {}).address || {}).city}</p>
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={handleClose}>
+            Close
+          </Button>
+        </Modal.Footer>
+      </Modal>
       {
-        todoList.map((todo, index)=>(
+        (todoList || []).map((todo, index)=>(
          
           <Card border="dark" bg="info" style={{ width: "15rem" }}>
-        <Card.Img variant="top" src="holder.js/100px180" />
         <Card.Body>
-          <Card.Title>{todo}</Card.Title>
+          <Card.Title>Username: {todo.username}</Card.Title>
           <Card.Text>
-            Some quick example text to build on the card title and make up the
-            bulk of the card's content.
+          <p>Email: {todo.email}</p>
+          <p>City: {(todo.address || {}).city}</p>
           </Card.Text>
-          <Button size="sm" variant="primary">
+          <Button size="sm" variant="primary" onClick={() => handleShow(todo)}>
             More
           </Button>
-           <Button size="sm" variant="danger" onClick={(e)=>onDelete()}>
+           <Button size="sm" variant="danger" onClick={()=>onDelete(todo)}>
             Delete 
           </Button> 
     

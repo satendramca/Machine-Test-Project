@@ -3,7 +3,6 @@ import { useTodoContext } from "../Provider/TodoProvider";
 
 const TodoForm = () => {
   const { getNumberOfTodoItem, addTodo } = useTodoContext();
-  // const [todoItem, setTodoItem] = useState("");
   const [user, setUser] = useState("");
   const [email, setEmail] = useState("");
   const [city, setCity] = useState("");
@@ -15,15 +14,11 @@ const TodoForm = () => {
       return;
     }
 
-    // addTodo(todoItem);
-    addTodo(user, email, city);
-    // addTodo(userEmail);
-    // addTodo(usercity);
+    addTodo({username: user, email, address: {city}});
 
     setUser("");
     setEmail("");
     setCity("");
-    // console.log("new todo =>", todoItem);
   };
 
   return (

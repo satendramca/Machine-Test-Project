@@ -10,7 +10,21 @@ const TodoProvider = ({ children }) => {
   const getNumberOfTodoItem = () => todoList.length;
 
   const addTodo = (newTodoItem) => {
-    setTodoList([...todoList, newTodoItem]);
+    setTodoList([newTodoItem, ...todoList]);
+  };
+
+  const getAllData = () => {
+    console.log('---getAllData---');
+    fetch("https://jsonplaceholder.typicode.com/users")
+      .then(res => res.json())
+      .then(
+        (result) => {
+          setTodoList(result);
+        },
+        (error) => {
+          console.error(error);
+        }
+      )
   };
 
   const removeTodo = (todoIndex) => {
@@ -19,6 +33,7 @@ const TodoProvider = ({ children }) => {
   };
 
   const contextValue = {
+    getAllData,
     todoList,
     getNumberOfTodoItem,
     addTodo,
