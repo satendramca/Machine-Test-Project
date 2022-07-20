@@ -1,7 +1,6 @@
-
-import Container from 'react-bootstrap/Container';
-import Nav from 'react-bootstrap/Nav';
-import Navbar from 'react-bootstrap/Navbar';
+import Container from "react-bootstrap/Container";
+import Nav from "react-bootstrap/Nav";
+import Navbar from "react-bootstrap/Navbar";
 
 function NavBar() {
   return (
@@ -15,7 +14,9 @@ function NavBar() {
             <Nav.Link href="#pricing">Pricing</Nav.Link>
           </Nav>
           <Nav>
-            <Nav.Link href="#deets"><h4>All Users</h4></Nav.Link>
+            <Nav.Link href="#deets">
+              <h4>All Users</h4>
+            </Nav.Link>
             <Nav.Link eventKey={2} href="#memes">
               <h4>+</h4>
             </Nav.Link>
@@ -27,5 +28,3 @@ function NavBar() {
 }
 
 export default NavBar;
-
-
