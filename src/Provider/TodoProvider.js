@@ -14,9 +14,9 @@ const TodoProvider = ({ children }) => {
   };
 
   const getAllData = () => {
-    console.log('---getAllData---');
+    console.log("---getAllData---");
     fetch("https://jsonplaceholder.typicode.com/users")
-      .then(res => res.json())
+      .then((res) => res.json())
       .then(
         (result) => {
           setTodoList(result);
@@ -24,7 +24,7 @@ const TodoProvider = ({ children }) => {
         (error) => {
           console.error(error);
         }
-      )
+      );
   };
 
   const removeTodo = (todoIndex) => {
