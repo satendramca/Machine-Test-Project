@@ -32,20 +32,21 @@ const TodoForm = () => {
           onChange={(e) => setUser(e.target.value)}
           placeholder=" Enter Username"
         ></input>
+        <br/><br/>
         <input
           type="text"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           placeholder="Enter Email"
         ></input>
+        <br/><br/>
         <input
           type="text"
           value={city}
           onChange={(e) => setCity(e.target.value)}
           placeholder=" Enter City"
         ></input>
-
-
+         <br/><br/>
         <button type="submit">Submit</button>
       </form>
     </div>

@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
 import Modal from 'react-bootstrap/Modal';
+import Form from 'react-bootstrap/Form';
 import { useTodoContext } from "../Provider/TodoProvider";
 
 const HomePage = () => {
@@ -34,12 +35,15 @@ const HomePage = () => {
           <Modal.Title>{(itemForDisplay[0] || {}).username}</Modal.Title>
         </Modal.Header>
         <Modal.Body>
+      
           <p>{(itemForDisplay[0] || {}).name}</p>
           <p>{(itemForDisplay[0] || {}).email}</p>
           <p>{(itemForDisplay[0] || {}).phone}</p>
           <p>{(itemForDisplay[0] || {}).website}</p>
           <p>{((itemForDisplay[0] || {}).company || {}).name}</p>
           <p>{((itemForDisplay[0] || {}).address || {}).city}</p>
+      
+          
         </Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={handleClose}>
