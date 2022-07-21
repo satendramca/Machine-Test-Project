@@ -42,3 +42,15 @@
   color: azure;
 }
 
+.div-container{
+  align-items: center;
+  margin-left: 25%;
+}
+
+p{
+  word-spacing: 8px;
+  text-indent: 40px;
+  font-family: "Times New Roman", Times, serif;
+
+}
+
