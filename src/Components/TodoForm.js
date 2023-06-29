@@ -9,8 +9,6 @@ import Row from "react-bootstrap/Row";
 const TodoForm = () => {
   const { getNumberOfTodoItem, addTodo } = useTodoContext();
   const navigate = useNavigate();
-
-  
   const [name, setName] = useState("");
   const [user, setUser] = useState("");
   const [email, setEmail] = useState("");
